@@ -17,5 +17,9 @@ Routing App
 </ul>
 
 <h2 *appUnless="display">Test for unless directive</h2>
+
+<ul>
+    <li *ngFor="let fruit of fruits | filtercustompipe:'apple' ;">{{fruit.name}}</li>
+</ul>
 <router-outlet></router-outlet>
 

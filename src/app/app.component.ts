@@ -4,11 +4,12 @@ import { UserListComponent } from './user-list/user-list.component';
 import { CookieService } from 'ngx-cookie-service';
 import { CommonModule } from '@angular/common';
 import { UnlessDirective } from './unless.directive';
+import { FilterCustomPipePipe } from './custom-pipe/filter-custom-pipe.pipe';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,UserListComponent,RouterModule,CommonModule,UnlessDirective],
+  imports: [RouterOutlet,UserListComponent,RouterModule,CommonModule,UnlessDirective,FilterCustomPipePipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -46,5 +47,13 @@ export class AppComponent {
 
   //test unless directive variable
   display=false;
+
+  //custum filter pipe data
+  fruits = [
+    { name: 'apple' },
+    { name: 'banana' },
+    { name: 'grape' },
+    { name: 'pineapple' }
+  ];
 
 }
