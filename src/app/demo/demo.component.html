@@ -1,0 +1,8 @@
+<div class="container">
+    <h2>Observables</h2>
+    <div class="data-list" *ngFor="let data of data">
+        {{data}}
+    </div>
+
+    <button (click)="getAsyncData()" class="btn btn-warning">Click</button>
+</div>
