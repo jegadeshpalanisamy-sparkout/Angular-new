@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { UserListComponent } from './user-list/user-list.component';
 import { CookieService } from 'ngx-cookie-service';
+import { CommonModule } from '@angular/common';
+import { UnlessDirective } from './unless.directive';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,UserListComponent,RouterModule],
+  imports: [RouterOutlet,UserListComponent,RouterModule,CommonModule,UnlessDirective],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -29,4 +31,20 @@ export class AppComponent {
   RemoveCookie(){
     this.cookie.deleteAll();
   }
+
+
+  numbers = [
+    { id: 1, name: 'Number 1' },
+    { id: 2, name: 'Number 2' },
+    { id: 3, name: 'Number 3' }
+  ];
+
+  trackbyId(index:number, num:any){
+    console.log(2);
+    return num.id;
+  }
+
+  //test unless directive variable
+  display=false;
+
 }

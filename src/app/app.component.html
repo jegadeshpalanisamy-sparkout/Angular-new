@@ -11,5 +11,11 @@ Routing App
 <button (click)="getCookie()">Get Cookie</button> &nbsp;
 <button (click)="RemoveCookie()">delete Cookie</button>
 
+
+<ul>
+    <li *ngFor="let number of numbers; trackBy:trackbyId">{{number.name}}</li>
+</ul>
+
+<h2 *appUnless="display">Test for unless directive</h2>
 <router-outlet></router-outlet>
 
