@@ -6,12 +6,13 @@ import { CommonModule } from '@angular/common';
 import { UnlessDirective } from './unless.directive';
 import { FilterCustomPipePipe } from './custom-pipe/filter-custom-pipe.pipe';
 import { DemoComponent } from './demo/demo.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,UserListComponent,RouterModule,CommonModule,UnlessDirective,FilterCustomPipePipe,DemoComponent,HttpClientModule],
+  imports: [RouterOutlet,UserListComponent,RouterModule,CommonModule,UnlessDirective,FilterCustomPipePipe,DemoComponent,FileUploadComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
