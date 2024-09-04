@@ -25,3 +25,9 @@ Routing App
 <app-file-upload></app-file-upload>
 <router-outlet></router-outlet>
 
+<input [(ngModel)]="userName" (ngModelChange)="onNameChange($event)" placeholder="Enter your name">
+<p>Your name is: {{ userName }}</p>
+
+<input [(ngModel)]="userEmail" (change)="onEmailChange($event)" placeholder="Enter your email">
+<p>Your email is: {{ userEmail }}</p>
+<app-life-cycle-hooks></app-life-cycle-hooks>

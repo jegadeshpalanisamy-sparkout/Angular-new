@@ -8,11 +8,14 @@ import { FilterCustomPipePipe } from './custom-pipe/filter-custom-pipe.pipe';
 import { DemoComponent } from './demo/demo.component';
 import { HttpClient } from '@angular/common/http';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { LifeCycleHooksComponent } from './life-cycle-hooks/life-cycle-hooks.component';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,UserListComponent,RouterModule,CommonModule,UnlessDirective,FilterCustomPipePipe,DemoComponent,FileUploadComponent],
+  imports: [RouterOutlet,UserListComponent,RouterModule,CommonModule,UnlessDirective,FilterCustomPipePipe,DemoComponent,FileUploadComponent,FormsModule,LifeCycleHooksComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -67,4 +70,19 @@ export class AppComponent implements OnInit{
     );
   }
 
+  //ngModel change
+
+  userName: string = '';
+  onNameChange(newName: string) {
+    console.log('Name changed to:', newName);
+  }
+
+  //change event
+  userEmail: string = '';
+  onEmailChange(event:Event){
+    // console.log(event.target );
+    const inputEl = event.target as HTMLInputElement;
+    console.log(inputEl.value);
+
+  }
 }
