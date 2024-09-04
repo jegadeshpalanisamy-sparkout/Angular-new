@@ -31,3 +31,8 @@ Routing App
 <input [(ngModel)]="userEmail" (change)="onEmailChange($event)" placeholder="Enter your email">
 <p>Your email is: {{ userEmail }}</p>
 <app-life-cycle-hooks></app-life-cycle-hooks>
+
+
+<!-- @output() learning -->
+<app-child (messageEvent)="receiveMessage($event)"></app-child>
+<p>{{ receivedMessage }}</p>

@@ -10,12 +10,13 @@ import { HttpClient } from '@angular/common/http';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { LifeCycleHooksComponent } from './life-cycle-hooks/life-cycle-hooks.component';
 import { FormsModule } from '@angular/forms';
+import { ChildComponent } from './child/child.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,UserListComponent,RouterModule,CommonModule,UnlessDirective,FilterCustomPipePipe,DemoComponent,FileUploadComponent,FormsModule,LifeCycleHooksComponent],
+  imports: [RouterOutlet,UserListComponent,RouterModule,CommonModule,ChildComponent,UnlessDirective,FilterCustomPipePipe,DemoComponent,FileUploadComponent,FormsModule,LifeCycleHooksComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -85,4 +86,11 @@ export class AppComponent implements OnInit{
     console.log(inputEl.value);
 
   }
+
+  receivedMessage='';
+  receiveMessage(message :string){
+    this.receivedMessage=message;
+  }
+  
+
 }
