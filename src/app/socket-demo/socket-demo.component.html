@@ -1,0 +1,11 @@
+<div class="chat-box">
+    <h1>Learn Socket</h1>
+    
+    <input [(ngModel)]="message" placeholder="Enter your message..." />
+    <button (click)="sendMessage()">Send</button>
+
+    <ul>
+        <li *ngFor="let msg of messages">{{msg}}</li>
+    </ul>
+  </div>
+ 
