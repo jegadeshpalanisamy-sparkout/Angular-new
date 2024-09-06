@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -41,4 +41,20 @@ export class DemoComponent {
       }
     )
     }
+
+    counter = signal(0);
+    messages = signal<string[]>([]);
+
+
+    increment(){
+      // this.counter.set(this.counter() + 1)
+      this.counter.update((preValue)=> preValue +1)
+    }
+
+    degrement(){
+      this.counter.set(this.counter()-1)
+      this.counter.update((preValue)=> preValue -1)
+
+    }
+
 }

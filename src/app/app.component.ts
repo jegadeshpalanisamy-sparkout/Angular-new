@@ -12,12 +12,13 @@ import { LifeCycleHooksComponent } from './life-cycle-hooks/life-cycle-hooks.com
 import { FormsModule } from '@angular/forms';
 import { ChildComponent } from './child/child.component';
 import { SocketDemoComponent } from './socket-demo/socket-demo.component';
+import { RxjsLearnComponent } from './rxjs-learn/rxjs-learn.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,UserListComponent,RouterModule,CommonModule,ChildComponent,UnlessDirective,FilterCustomPipePipe,DemoComponent,FileUploadComponent,FormsModule,LifeCycleHooksComponent,SocketDemoComponent],
+  imports: [RouterOutlet,UserListComponent,RouterModule,CommonModule,ChildComponent,UnlessDirective,FilterCustomPipePipe,DemoComponent,FileUploadComponent,FormsModule,LifeCycleHooksComponent,SocketDemoComponent,RxjsLearnComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -6,3 +6,18 @@
 
     <button (click)="getAsyncData()" class="btn btn-warning">Click</button>
 </div>
+
+
+<br><br>
+<!-- signals -->
+ <div class="container">
+    <button (click)="degrement()">-</button>
+    <span>{{counter()}}</span>
+    <button (click)="increment()">+</button>
+ </div>
+
+ <div class="container">
+    <div *ngFor="let msg of messages">
+        <p>{{msg}}</p>
+    </div>
+ </div>

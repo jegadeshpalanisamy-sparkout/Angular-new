@@ -6,13 +6,13 @@ import { Socket, io } from 'socket.io-client';
   providedIn: 'root'
 })
 export class SocketService {
-  private socket: Socket;
+  private socket!: Socket;
 
   constructor() {
-    this.socket = io('http://localhost:3000', { autoConnect: false });
-    inject(ApplicationRef).isStable.pipe(
-    first((isStable) => isStable))
-    .subscribe(() => { this.socket.connect() });
+    // this.socket = io('http://localhost:3000', { autoConnect: false });
+    // inject(ApplicationRef).isStable.pipe(
+    // first((isStable) => isStable))
+    // .subscribe(() => { this.socket.connect() });
 
 
    }
