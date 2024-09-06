@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RxjsLearnComponent } from './rxjs-learn.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 describe('RxjsLearnComponent', () => {
   let component: RxjsLearnComponent;
@@ -8,7 +10,7 @@ describe('RxjsLearnComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RxjsLearnComponent]
+      imports: [RxjsLearnComponent,CommonModule,FormsModule]
     })
     .compileComponents();
 

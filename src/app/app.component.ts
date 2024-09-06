@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { ChildComponent } from './child/child.component';
 import { SocketDemoComponent } from './socket-demo/socket-demo.component';
 import { RxjsLearnComponent } from './rxjs-learn/rxjs-learn.component';
+import { DemoService } from './service/demo.service';
 
 
 @Component({
@@ -25,7 +26,7 @@ import { RxjsLearnComponent } from './rxjs-learn/rxjs-learn.component';
 export class AppComponent implements OnInit{
   title = 'Angular-new';
 
-  constructor(private cookie:CookieService,private http:HttpClient){}
+  constructor(private cookie:CookieService,private http:HttpClient,private demoService:DemoService){}
 
   setCookie(){
     console.log(1);
@@ -71,6 +72,10 @@ export class AppComponent implements OnInit{
         console.log(response);
       }
     );
+
+    this.demoService.createTask.subscribe((value)=>{
+      this.tasks.push(value);
+    })
   }
 
   //ngModel change
@@ -94,5 +99,7 @@ export class AppComponent implements OnInit{
     this.receivedMessage=message;
   }
   
+
+  tasks:string[]=['task1','task2','task3'];
 
 }

@@ -2,3 +2,8 @@
     <li *ngFor="let data of data">{{data}}</li>
 </ul>
 <button (click)="getData()">get data</button>
+
+
+<br><br>
+<input type="text" [(ngModel)]="newTask">
+<button (click)="storeTask()">store</button>
