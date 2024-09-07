@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Observable, Subject, from, of } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, from, of } from 'rxjs';
 import { DemoComponent } from '../demo/demo.component';
 import { DemoService } from '../service/demo.service';
 
@@ -63,9 +63,25 @@ export class RxjsLearnComponent implements OnInit{
     sub.subscribe((data)=>console.log(data))
     sub.subscribe((data)=>console.log(data))
 
-    sub.next(Math.random());
+    sub.next(Math.random()); 
+    //it emit initial value first
+    let behaviourSubject = new BehaviorSubject<number>(100);
 
+    behaviourSubject.subscribe((data)=>console.log("subcriber 1",data))
+    behaviourSubject.subscribe((data)=>console.log("subcriber 2",data))
+
+    behaviourSubject.next(200);
+
+    behaviourSubject.subscribe((data)=>console.log("subcriber 3",data))
     
+    behaviourSubject.next(300);
+
+    behaviourSubject.subscribe((data)=>console.log("subcriber 4",data))
+    behaviourSubject.subscribe((data)=>console.log("subcriber 5",data))
+
+
   }
+
+
 
 }
