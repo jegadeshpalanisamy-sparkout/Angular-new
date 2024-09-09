@@ -7,3 +7,11 @@
 <br><br>
 <input type="text" [(ngModel)]="newTask">
 <button (click)="storeTask()">store</button>
+
+<br>
+<ul>
+    <li *ngFor="let a of num">{{a}}</li>
+
+<button (click)="onSubscribe()">Subscribe</button>
+<button (click)="unSubscribe()">Unsubscribe</button>
+</ul>

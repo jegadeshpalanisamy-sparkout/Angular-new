@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AsyncSubject, BehaviorSubject, Observable, ReplaySubject, Subject, from, of } from 'rxjs';
+import { AsyncSubject, BehaviorSubject, Observable, ReplaySubject, Subject, from, interval, of, } from 'rxjs';
 import { DemoComponent } from '../demo/demo.component';
 import { DemoService } from '../service/demo.service';
 
@@ -109,14 +109,21 @@ export class RxjsLearnComponent implements OnInit{
     asyncSubject.next(7000);
     asyncSubject.next(8000);
     asyncSubject.complete();
-
-
-
-
-
-
   }
 
+  //learn unsubscribe
+  count=interval(1000);
+  num:number[]=[];
+  subscriber:any;
+  onSubscribe() {
+    this.subscriber=this.count.subscribe((val)=>{
+      this.num.push(val);
+    })
+  }
+
+  unSubscribe(){
+    this.subscriber.unsubscribe();
+  }
 
 
 
