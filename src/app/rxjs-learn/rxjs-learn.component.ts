@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BehaviorSubject, Observable, Subject, from, of } from 'rxjs';
+import { BehaviorSubject, Observable, ReplaySubject, Subject, from, of } from 'rxjs';
 import { DemoComponent } from '../demo/demo.component';
 import { DemoService } from '../service/demo.service';
 
@@ -78,6 +78,22 @@ export class RxjsLearnComponent implements OnInit{
 
     behaviourSubject.subscribe((data)=>console.log("subcriber 4",data))
     behaviourSubject.subscribe((data)=>console.log("subcriber 5",data))
+
+    console.log("Replay subject");
+    let replaySub = new ReplaySubject(1);
+    replaySub.next(500);
+    replaySub.next(1000);
+
+
+    replaySub.subscribe((data)=>console.log("replay sub 1:",data))
+    replaySub.subscribe((data)=>console.log("replay sub 2:",data))
+
+    replaySub.next(2000);
+
+    replaySub.subscribe((data)=>console.log("replay sub 3:",data))
+    replaySub.subscribe((data)=>console.log("replay sub 4:",data))
+    replaySub.next(3000);
+
 
 
   }
