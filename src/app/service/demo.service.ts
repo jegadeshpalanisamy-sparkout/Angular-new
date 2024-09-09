@@ -6,7 +6,10 @@ import { Subject } from 'rxjs';
 })
 export class DemoService {
 
-  constructor() { }
+  sub:Subject<number>;
+  constructor() { 
+    this.sub= new Subject();
+  }
 
   // createTask: EventEmitter<string> = new EventEmitter<string>();
   
@@ -18,4 +21,9 @@ export class DemoService {
     
 
   }
+
+
+  
+
+
 }

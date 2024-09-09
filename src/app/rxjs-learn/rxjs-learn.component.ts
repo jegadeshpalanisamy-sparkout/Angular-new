@@ -15,7 +15,7 @@ import { DemoService } from '../service/demo.service';
 export class RxjsLearnComponent implements OnInit{
 
   constructor(private demoService:DemoService){
-
+    demoService.sub.subscribe(x=>console.log("From rxjs component ",x));
   }
 
   array1=[1,2,3,4]
@@ -64,13 +64,13 @@ export class RxjsLearnComponent implements OnInit{
     sub.subscribe((data)=>console.log(data))
 
     sub.next(Math.random()); 
-    //it emit initial value first
+    //it emit initial value first and its store last emited value
     let behaviourSubject = new BehaviorSubject<number>(100);
 
     behaviourSubject.subscribe((data)=>console.log("subcriber 1",data))
     behaviourSubject.subscribe((data)=>console.log("subcriber 2",data))
 
-    behaviourSubject.next(200);
+    behaviourSubject.next(200);//
 
     behaviourSubject.subscribe((data)=>console.log("subcriber 3",data))
     
@@ -79,7 +79,7 @@ export class RxjsLearnComponent implements OnInit{
     behaviourSubject.subscribe((data)=>console.log("subcriber 4",data))
     behaviourSubject.subscribe((data)=>console.log("subcriber 5",data))
 
-    console.log("Replay subject");
+    console.log("Replay subject"); //store and replay a number of previous values to new subscribers. The number of values it replays depends on how it’s configured.
     let replaySub = new ReplaySubject(1);
     replaySub.next(500);
     replaySub.next(1000);
@@ -116,6 +116,8 @@ export class RxjsLearnComponent implements OnInit{
 
 
   }
+
+
 
 
 

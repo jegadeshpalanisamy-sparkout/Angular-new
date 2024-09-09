@@ -44,3 +44,7 @@ Routing App
 <ul>
     <li *ngFor="let task of tasks">{{task}}</li>
 </ul>
+
+
+<!-- multiple component data changes using subject -->
+<button (click)="emit(5)">emit</button>

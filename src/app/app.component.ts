@@ -102,4 +102,9 @@ export class AppComponent implements OnInit{
 
   tasks:string[]=['task1','task2','task3'];
 
+  emit(data:number){
+    console.log(" i am from emiting app component");
+    this.demoService.sub.next(data);
+  }
+
 }
