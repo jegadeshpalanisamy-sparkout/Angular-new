@@ -1,0 +1,25 @@
+<!-- payment.component.html -->
+<div>
+    <h2>Stripe Payment</h2>
+    <button (click)="handlePayment()">Pay Now</button>
+</div>
+
+
+<br><br>
+<!-- payment.component.html -->
+<div class="payment-form">
+    <div id="card-element"><!-- Stripe Card Element will go here --></div>
+    <div *ngIf="cardError" class="card-errors">{{ cardError }}</div>
+  
+    <!-- Spinner -->
+    <div *ngIf="loading" class="spinner">
+      <!-- Example spinner: You can replace this with your preferred spinner design -->
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Processing...</span>
+      </div>
+    </div>
+    <button (click)="submitPayment()" [disabled]="loading">
+      Pay 
+    </button>
+    <p *ngIf="successMessage" style="color: green">{{ successMessage }}</p>
+  </div>

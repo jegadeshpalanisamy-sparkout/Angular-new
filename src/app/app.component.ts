@@ -14,12 +14,14 @@ import { ChildComponent } from './child/child.component';
 import { SocketDemoComponent } from './socket-demo/socket-demo.component';
 import { RxjsLearnComponent } from './rxjs-learn/rxjs-learn.component';
 import { DemoService } from './service/demo.service';
+import { Token } from '@angular/compiler';
+import { StripeComponent } from './stripe/stripe.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,UserListComponent,RouterModule,CommonModule,ChildComponent,UnlessDirective,FilterCustomPipePipe,DemoComponent,FileUploadComponent,FormsModule,LifeCycleHooksComponent,SocketDemoComponent,RxjsLearnComponent],
+  imports: [RouterOutlet,StripeComponent,UserListComponent,RouterModule,CommonModule,ChildComponent,UnlessDirective,FilterCustomPipePipe,DemoComponent,FileUploadComponent,FormsModule,LifeCycleHooksComponent,SocketDemoComponent,RxjsLearnComponent,],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -76,6 +78,9 @@ export class AppComponent implements OnInit{
     this.demoService.createTask.subscribe((value)=>{
       this.tasks.push(value);
     })
+
+
+    this.involkeStripe()
   }
 
   //ngModel change
@@ -105,6 +110,36 @@ export class AppComponent implements OnInit{
   emit(data:number){
     console.log(" i am from emiting app component");
     this.demoService.sub.next(data);
+  }
+
+  makePayment(amount:any) {
+    console.log('hi');
+    const paymentHandler = (<any>window).stripeCheckout.configure({
+      key :'sk_test_51PZ6WiRxSEeK2VnRPkwBh3u9pJL0x8gNtbrKFZT2e3D5BpUMNQi6UaMSefQSv2QUZjpCme5uLr6YTaSMjdQxoiZ000jzbw3t4v',
+      locale : 'auto',
+
+      token :function(stripeToken:any){
+        console.log(stripeToken.card)
+        alert('stripe token generated');
+      }
+    })
+
+    paymentHandler.open({
+      name :'Test payment',
+      description : 'payment',
+      amount : amount * 100
+    })
+  }
+
+
+  involkeStripe(){
+    if(!window.document.getElementById('stripe-script')) {
+      const script = window.document.createElement('script');
+      script.id = 'stripe-script';
+      script.type = 'text/javascript';
+      script.src = '';
+      window.document.appendChild(script);
+    }
   }
 
 }

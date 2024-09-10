@@ -6,6 +6,8 @@ import { PostComponent } from './post/post.component';
 import { AboutUsCompanyComponent } from './about-us-company/about-us-company.component';
 import { AboutUsOrganizationComponent } from './about-us-organization/about-us-organization.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { SuccessComponent } from './success/success.component';
+import { CancelComponent } from './cancel/cancel.component';
 
 export const routes: Routes = [
     {path:'',component:HomeComponent},
@@ -17,5 +19,7 @@ export const routes: Routes = [
     },
     {path:'contact-us',component:ContactComponent},
     {path:'post/:id',component:PostComponent},
-    {path:"**",component:NotFoundComponent}
+    {path:'success',component:SuccessComponent},
+    {path:'cancel',component:CancelComponent},
+    {path:"**",component:NotFoundComponent},
 ];

@@ -48,3 +48,14 @@ Routing App
 
 <!-- multiple component data changes using subject -->
 <button (click)="emit(5)">emit</button>
+
+
+<div>
+    <h1>Stripe payment</h1>
+    <button (click)="makePayment(10)">pay 10</button>
+    <button (click)="makePayment(20)">pay 20</button>
+    <button (click)="makePayment(30)">pay 30</button>
+</div>
+
+
+<app-stripe></app-stripe>
