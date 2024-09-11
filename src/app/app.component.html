@@ -1,10 +1,18 @@
 <!-- <app-user-list></app-user-list> -->
 Routing App
+<!-- without routerActiveLinkOption -->
 <ul>
-    <li><a routerLink="/">Home</a></li>
-    <li><a routerLink="/about">About</a></li>
-    <li><a routerLink="/contact-us">Contact</a></li>
+    <li><a [routerLink]="'/'" routerLinkActive="active">Home</a></li>
+    <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+    <li><a routerLink="/contact-us" routerLinkActive="active">Contact</a></li>
 
+</ul>
+<!-- with routerActiveLinkOption -->
+
+<ul>
+    <li><a [routerLink]="'/'" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a></li>
+    <li><a [routerLink]="'about'" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">About</a></li>
+    <li><a [routerLink]="'contact-us'" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Contact</a></li>
 </ul>
 
 <button (click)="setCookie()">Set Cookie</button> &nbsp;
