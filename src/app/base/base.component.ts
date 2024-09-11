@@ -17,4 +17,8 @@ export class BaseComponent {
     // Simulate data fetching
     console.log('Fetching data in BaseComponent...');
   }
+
+  displayInfo(): void {
+    console.log('BaseComponent info');
+  }
 }

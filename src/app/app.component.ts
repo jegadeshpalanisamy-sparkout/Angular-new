@@ -30,7 +30,8 @@ export class AppComponent extends BaseComponent implements OnInit {
   title = 'Angular-new';
 
   constructor(private cookie:CookieService,private http:HttpClient,private demoService:DemoService){
-    super()
+    super();
+    this.displayInfo();
   }
 
   setCookie(){
@@ -84,6 +85,7 @@ export class AppComponent extends BaseComponent implements OnInit {
 
 
     this.involkeStripe()
+    
   }
 
   //ngModel change
@@ -150,4 +152,11 @@ export class AppComponent extends BaseComponent implements OnInit {
     this.logMessage('Task is being performed');
     this.fetchData();
   }
+
+  override displayInfo(): void {
+    console.log('DerivedComponent info');
+    super.displayInfo(); // Optionally call the base class method
+  }
+
+  
 }
