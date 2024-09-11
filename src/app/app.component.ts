@@ -16,6 +16,7 @@ import { RxjsLearnComponent } from './rxjs-learn/rxjs-learn.component';
 import { DemoService } from './service/demo.service';
 import { Token } from '@angular/compiler';
 import { StripeComponent } from './stripe/stripe.component';
+import { BaseComponent } from './base/base.component';
 
 
 @Component({
@@ -25,10 +26,12 @@ import { StripeComponent } from './stripe/stripe.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit{
+export class AppComponent extends BaseComponent implements OnInit {
   title = 'Angular-new';
 
-  constructor(private cookie:CookieService,private http:HttpClient,private demoService:DemoService){}
+  constructor(private cookie:CookieService,private http:HttpClient,private demoService:DemoService){
+    super()
+  }
 
   setCookie(){
     console.log(1);
@@ -142,4 +145,9 @@ export class AppComponent implements OnInit{
     }
   }
 
+
+  performTask(): void {
+    this.logMessage('Task is being performed');
+    this.fetchData();
+  }
 }
