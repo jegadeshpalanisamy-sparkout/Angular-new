@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, signal } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-demo',
@@ -9,11 +10,17 @@ import { Observable } from 'rxjs';
   templateUrl: './demo.component.html',
   styleUrl: './demo.component.css'
 })
-export class DemoComponent {
+export class DemoComponent implements OnInit {
 
     //observable
 
     data:any[]=[];
+    productId!: string;
+    routeSub!: Subscription;
+    
+
+
+    
 
     myObservable = new Observable((observer) => {
       // observer.next([1,2,3,4,5]);
@@ -56,5 +63,17 @@ export class DemoComponent {
       this.counter.update((preValue)=> preValue -1)
 
     }
+    constructor(private activeRoute:ActivatedRoute){}
 
+    ngOnInit(): void {
+     this.productId = this.activeRoute.snapshot.paramMap.get('id') ?? ''
+      console.log('Product ID from snapshot:', this.productId);  //this is change only first time route was called
+
+      this.routeSub = this.activeRoute.paramMap.subscribe((data)=>{//this is every time called even route parameter changed
+        this.productId= data.get('id') ?? '';
+        console.log('Product ID from subscribe:', this.productId);
+
+    })
+
+    }
 }

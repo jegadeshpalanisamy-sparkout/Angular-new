@@ -8,6 +8,7 @@ import { AboutUsOrganizationComponent } from './about-us-organization/about-us-o
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SuccessComponent } from './success/success.component';
 import { CancelComponent } from './cancel/cancel.component';
+import { DemoComponent } from './demo/demo.component';
 
 export const routes: Routes = [
     {path:'',component:HomeComponent},
@@ -21,5 +22,6 @@ export const routes: Routes = [
     {path:'post/:id',component:PostComponent},
     {path:'success',component:SuccessComponent},
     {path:'cancel',component:CancelComponent},
+    {path: 'product/:id', component: DemoComponent},
     {path:"**",component:NotFoundComponent},
 ];
