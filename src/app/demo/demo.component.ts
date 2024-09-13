@@ -16,8 +16,9 @@ export class DemoComponent implements OnInit {
 
     data:any[]=[];
     productId!: string;
+    category!:string;
     routeSub!: Subscription;
-    
+    searchTerm!:string;
 
 
     
@@ -73,7 +74,21 @@ export class DemoComponent implements OnInit {
         this.productId= data.get('id') ?? '';
         console.log('Product ID from subscribe:', this.productId);
 
-    })
+//get value from query params
+        this.activeRoute.queryParamMap.subscribe((data:any)=>{
+          console.log(data);
+          this.productId = data.params['id'];
+          this.category = data.params['category'];
+          this.searchTerm = data.params['search'] || 'No search term provided';
 
+          
+          console.log("from search bar with query param:",this.searchTerm);
+          console.log("from query param:",this.productId);
+          console.log("from query param:",this.category);
+        })
+    })
     }
+
+  
+
 }

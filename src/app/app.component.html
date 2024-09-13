@@ -77,3 +77,9 @@ Routing App
     <a [routerLink]="['/product', 1]">Product 1</a>
     <a [routerLink]="['/product', 2]">Product 2</a>
   </nav>
+
+  <button (click)="getProduct()">Get value from query param</button>
+
+  <form action="" (ngSubmit)="onSearch()">
+    <input type="text" [(ngModel)]="searchQuery" name="search" placeholder="Enter product name" required>
+  </form>

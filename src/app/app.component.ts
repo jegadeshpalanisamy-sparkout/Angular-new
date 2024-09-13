@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { UserListComponent } from './user-list/user-list.component';
 import { CookieService } from 'ngx-cookie-service';
 import { CommonModule } from '@angular/common';
@@ -28,8 +28,8 @@ import { BaseComponent } from './base/base.component';
 })
 export class AppComponent extends BaseComponent implements OnInit {
   title = 'Angular-new';
-
-  constructor(private cookie:CookieService,private http:HttpClient,private demoService:DemoService){
+  searchQuery! :string;
+  constructor(private cookie:CookieService,private http:HttpClient,private demoService:DemoService,private router:Router){
     super();
     this.displayInfo();
   }
@@ -158,5 +158,11 @@ export class AppComponent extends BaseComponent implements OnInit {
     super.displayInfo(); // Optionally call the base class method
   }
 
+  getProduct() {
+    this.router.navigate(['/product'], { queryParams: { id: 101, category: 'electronics' } });
+  }
   
+  onSearch(){
+    this.router.navigate(['/product'], { queryParams: {search:this.searchQuery}})
+  }
 }
