@@ -1,0 +1,8 @@
+<p>web3-connect works!</p>
+
+<div *ngIf="!address">
+    <button (click)="connectWallet()">Connect wallet</button>
+</div>
+<div *ngIf="address">
+    <button (click)="disconnectWallet()">Disconnect wallet</button>
+</div>

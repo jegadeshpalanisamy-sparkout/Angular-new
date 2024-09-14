@@ -17,12 +17,13 @@ import { DemoService } from './service/demo.service';
 import { Token } from '@angular/compiler';
 import { StripeComponent } from './stripe/stripe.component';
 import { BaseComponent } from './base/base.component';
+import { Web3ConnectComponent } from './web3-connect/web3-connect.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,StripeComponent,UserListComponent,RouterModule,CommonModule,ChildComponent,UnlessDirective,FilterCustomPipePipe,DemoComponent,FileUploadComponent,FormsModule,LifeCycleHooksComponent,SocketDemoComponent,RxjsLearnComponent,],
+  imports: [RouterOutlet,StripeComponent,Web3ConnectComponent ,UserListComponent,RouterModule,CommonModule,ChildComponent,UnlessDirective,FilterCustomPipePipe,DemoComponent,FileUploadComponent,FormsModule,LifeCycleHooksComponent,SocketDemoComponent,RxjsLearnComponent,],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

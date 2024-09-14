@@ -80,7 +80,6 @@ export class DemoComponent implements OnInit {
           this.productId = data.params['id'];
           this.category = data.params['category'];
           this.searchTerm = data.params['search'] || 'No search term provided';
-
           
           console.log("from search bar with query param:",this.searchTerm);
           console.log("from query param:",this.productId);
