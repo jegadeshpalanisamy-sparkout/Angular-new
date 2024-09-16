@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Web3Service } from '../service/web3.service';
 import { CommonModule } from '@angular/common';
 import detectEthereumProvider from '@metamask/detect-provider';
+import { Observable } from 'rxjs';
 
 
 
@@ -14,7 +15,8 @@ import detectEthereumProvider from '@metamask/detect-provider';
 })
 export class Web3ConnectComponent implements OnInit {
 
- public address:string |undefined|null=null;
+//  public address:string |undefined|null=null;
+  address!: Observable<any>
 
   constructor(private web3Service: Web3Service){}
 
@@ -30,7 +32,7 @@ export class Web3ConnectComponent implements OnInit {
   //disconnect wallet
   disconnectWallet(){
     this.web3Service.disconnect();
-    this.address =null;
+    // this.address =null;
   }
 
 
@@ -45,6 +47,7 @@ export class Web3ConnectComponent implements OnInit {
       console.log("wallect provider",this.walletAvaiable)
       // Listen for account changes
       window.ethereum.on('accountsChanged',(account:string[])=>{
+        console.log('changed');
         if(account.length == 0) {
           this.connectedAccount = null; // No account connected
 
@@ -68,7 +71,6 @@ export class Web3ConnectComponent implements OnInit {
         const account = await window.ethereum.request({
           method:'eth_requestAccounts'
         })
-
         console.log("account:",account)
         this.connectedAccount = account[0];
         console.log('Connected account:', this.connectedAccount);

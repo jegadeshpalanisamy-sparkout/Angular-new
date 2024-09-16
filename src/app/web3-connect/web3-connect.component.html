@@ -7,6 +7,16 @@
     <button (click)="disconnectWallet()">Disconnect wallet</button>
 </div>
 
+<p>using observable showing message</p>
+<div *ngIf="address">
+    <p>Wallet connected</p>
+  </div>
+  <div *ngIf="!(address)">
+    <p>Wallet not connected</p>
+  </div>
+
+
+
 
 <button (click)="walletConnection()" *ngIf="walletAvaiable">connect</button>
 <button (click)="walletDisconnect()" *ngIf="walletAvaiable">Disconnect</button>
