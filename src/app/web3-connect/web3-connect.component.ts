@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Web3Service } from '../service/web3.service';
 import { CommonModule } from '@angular/common';
+import detectEthereumProvider from '@metamask/detect-provider';
+
+
 
 @Component({
   selector: 'app-web3-connect',
@@ -9,7 +12,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './web3-connect.component.html',
   styleUrl: './web3-connect.component.css'
 })
-export class Web3ConnectComponent {
+export class Web3ConnectComponent implements OnInit {
 
  public address:string |undefined|null=null;
 
@@ -28,5 +31,56 @@ export class Web3ConnectComponent {
   disconnectWallet(){
     this.web3Service.disconnect();
     this.address =null;
+  }
+
+
+  walletAvaiable =false;
+  connectedAccount: string | null = null;
+  async ngOnInit() {
+    const provider = await detectEthereumProvider();
+    console.log("provider",provider)
+
+    if(provider) {
+      this.walletAvaiable = true;
+      console.log("wallect provider",this.walletAvaiable)
+      // Listen for account changes
+      window.ethereum.on('accountsChanged',(account:string[])=>{
+        if(account.length == 0) {
+          this.connectedAccount = null; // No account connected
+
+        } else {
+          this.connectedAccount = account[0]; // New account selected
+
+        }
+      })
+
+      window.ethereum.on('chainChanged',(chainId:string)=>{
+        console.log("Network changed:",chainId);
+        window.location.reload();// Reload the app when the network changes
+      })
+    }
+  }
+  
+  async walletConnection(){
+    
+    if(window.ethereum) {
+      try{
+        const account = await window.ethereum.request({
+          method:'eth_requestAccounts'
+        })
+
+        console.log("account:",account)
+        this.connectedAccount = account[0];
+        console.log('Connected account:', this.connectedAccount);
+
+      }catch(error){
+         console.error('User denied the connection request');
+      }
+    }
+  }
+
+  walletDisconnect(){
+    this.connectedAccount = null
+    console.log("wallet disconnected",this.connectedAccount);
   }
 }

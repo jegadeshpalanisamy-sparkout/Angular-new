@@ -6,3 +6,7 @@
 <div *ngIf="address">
     <button (click)="disconnectWallet()">Disconnect wallet</button>
 </div>
+
+
+<button (click)="walletConnection()" *ngIf="walletAvaiable">connect</button>
+<button (click)="walletDisconnect()" *ngIf="walletAvaiable">Disconnect</button>

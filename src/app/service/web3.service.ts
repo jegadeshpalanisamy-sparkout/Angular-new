@@ -12,6 +12,9 @@ export class Web3Service {
   private signer: any | undefined;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    console.log('PlatformId:',platformId);
+    
+    console.log("isPlatformBrowser(this.platformId)",isPlatformBrowser(this.platformId));
     if (isPlatformBrowser(this.platformId)) {
       this.initWeb3Modal();
     }
@@ -50,6 +53,8 @@ export class Web3Service {
   disconnect() {
     if (isPlatformBrowser(this.platformId)) {
       this.web3Modal?.clearCachedProvider();
+      console.log('web3model',this.web3Modal)
+      alert(1);
       this.provider = undefined;
       this.signer = undefined;
       console.log('wallet disconnected');
