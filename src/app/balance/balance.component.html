@@ -1,0 +1,15 @@
+<div>
+    <h2>Check Token Balance</h2>
+  
+    <input [(ngModel)]="address" placeholder="Enter Ethereum address" />
+    <button (click)="getBalance()">Check Balance</button>
+  
+    <div *ngIf="loading">Loading...</div>
+  
+    <div *ngIf="balance && !loading">
+      <p>Balance: {{ balance }} tokens</p>
+    </div>
+  
+    <div *ngIf="error">{{ error }}</div>
+  </div>
+  
