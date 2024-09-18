@@ -60,4 +60,22 @@ export class Web3Service {
       console.log('wallet disconnected');
     }
   }
+
+  async signMessage(address: any) {
+    if (!isPlatformBrowser(this.platformId)) {
+      throw new Error('This functionality is only available in the browser.');
+    }
+    if (!this.signer) {
+      throw new Error('Wallet not connected.');
+    }
+    try {
+      const signature = await this.signer.signMessage(address);
+      console.log('Signature:', signature);
+      return signature;
+    } catch (error) {
+      console.error('Error signing message:', error);
+      throw error;
+    }
+
+  }
 }

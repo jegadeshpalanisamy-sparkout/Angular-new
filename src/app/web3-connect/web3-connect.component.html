@@ -6,17 +6,23 @@
 <div *ngIf="address">
     <button (click)="disconnectWallet()">Disconnect wallet</button>
 </div>
+<button (click)="signMessage()" [disabled]="!address">Sign In</button>
 
 <p>using observable showing message</p>
 <div *ngIf="address">
-    <p>Wallet connected</p>
-  </div>
-  <div *ngIf="!(address)">
-    <p>Wallet not connected</p>
-  </div>
+  <p>Wallet connected</p>
+</div>
+<div *ngIf="!(address)">
+  <p>Wallet not connected</p>
+</div>
+<!-- Display Signature -->
+<div *ngIf="signature">
+  <h1>Signature: {{ signature }}</h1>
+</div>
 
 
 
 
 <button (click)="walletConnection()" *ngIf="walletAvaiable">connect</button>
 <button (click)="walletDisconnect()" *ngIf="walletAvaiable">Disconnect</button>
+

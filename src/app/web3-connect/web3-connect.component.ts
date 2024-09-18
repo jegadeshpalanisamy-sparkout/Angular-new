@@ -17,6 +17,7 @@ export class Web3ConnectComponent implements OnInit {
 
 //  public address:string |undefined|null=null;
   address!: Observable<any>
+  signature: any;
 
   constructor(private web3Service: Web3Service){}
 
@@ -35,6 +36,12 @@ export class Web3ConnectComponent implements OnInit {
     // this.address =null;
   }
 
+  async signMessage(){
+    if(this.address) {
+     this.signature = await this.web3Service.signMessage(this.address);  
+     alert(this.signature) 
+     }
+  }
 
   walletAvaiable =false;
   connectedAccount: string | null = null;
@@ -74,7 +81,7 @@ export class Web3ConnectComponent implements OnInit {
         console.log("account:",account)
         this.connectedAccount = account[0];
         console.log('Connected account:', this.connectedAccount);
-
+        
       }catch(error){
          console.error('User denied the connection request');
       }
@@ -85,4 +92,7 @@ export class Web3ConnectComponent implements OnInit {
     this.connectedAccount = null
     console.log("wallet disconnected",this.connectedAccount);
   }
+
+
+
 }
