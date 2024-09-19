@@ -79,7 +79,7 @@ export class AppComponent extends BaseComponent implements OnInit {
       console.log("route fragment:",data);
       this.goToSection(data);
     })
-    
+
     this.http.get('https://jsonplaceholder.org/users').subscribe(
       (response)=>{
         console.log(response);
@@ -173,7 +173,13 @@ export class AppComponent extends BaseComponent implements OnInit {
     this.router.navigate(['/product'], { queryParams: {search:this.searchQuery}})
   }
 
-    goToSection(data:any){
+  goToSection(data:any){
     document.getElementById(data)?.scrollIntoView({behavior:'smooth'});
+  }
+
+
+  // This method manually triggers scrolling if the same link is clicked again.
+  scrollToSection(fragment: string) {
+    this.goToSection(fragment);
   }
 }
