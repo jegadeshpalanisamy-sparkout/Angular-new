@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterModule, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule, RouterOutlet } from '@angular/router';
 import { UserListComponent } from './user-list/user-list.component';
 import { CookieService } from 'ngx-cookie-service';
 import { CommonModule } from '@angular/common';
@@ -31,7 +31,7 @@ import { BalanceComponent } from './balance/balance.component';
 export class AppComponent extends BaseComponent implements OnInit {
   title = 'Angular-new';
   searchQuery! :string;
-  constructor(private cookie:CookieService,private http:HttpClient,private demoService:DemoService,private router:Router){
+  constructor(private cookie:CookieService,private http:HttpClient,private demoService:DemoService,private router:Router,private activatedRoute:ActivatedRoute){
     super();
     this.displayInfo();
   }
@@ -75,6 +75,11 @@ export class AppComponent extends BaseComponent implements OnInit {
 
   //interceptors http req
   ngOnInit(): void {
+    this.activatedRoute.fragment.subscribe((data)=>{
+      console.log("route fragment:",data);
+      this.goToSection(data);
+    })
+    
     this.http.get('https://jsonplaceholder.org/users').subscribe(
       (response)=>{
         console.log(response);
@@ -166,5 +171,9 @@ export class AppComponent extends BaseComponent implements OnInit {
   
   onSearch(){
     this.router.navigate(['/product'], { queryParams: {search:this.searchQuery}})
+  }
+
+    goToSection(data:any){
+    document.getElementById(data)?.scrollIntoView({behavior:'smooth'});
   }
 }
