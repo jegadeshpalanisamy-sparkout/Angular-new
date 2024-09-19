@@ -9,6 +9,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { SuccessComponent } from './success/success.component';
 import { CancelComponent } from './cancel/cancel.component';
 import { DemoComponent } from './demo/demo.component';
+import { AuthComponent } from './auth/auth.component';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     {path:'',component:HomeComponent},
@@ -23,5 +25,6 @@ export const routes: Routes = [
     {path:'success',component:SuccessComponent},
     {path:'cancel',component:CancelComponent},
     {path: 'product/:id', component: DemoComponent},
+    {path:'authUser',component:AuthComponent,canActivate:[AuthGuard]},
     {path:"**",component:NotFoundComponent},
 ];

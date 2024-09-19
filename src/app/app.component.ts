@@ -19,19 +19,21 @@ import { StripeComponent } from './stripe/stripe.component';
 import { BaseComponent } from './base/base.component';
 import { Web3ConnectComponent } from './web3-connect/web3-connect.component';
 import { BalanceComponent } from './balance/balance.component';
+import { AuthComponent } from './auth/auth.component';
+import { AuthService } from './service/auth.service';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,StripeComponent,Web3ConnectComponent ,UserListComponent,RouterModule,CommonModule,ChildComponent,UnlessDirective,FilterCustomPipePipe,DemoComponent,FileUploadComponent,FormsModule,LifeCycleHooksComponent,SocketDemoComponent,RxjsLearnComponent,BalanceComponent],
+  imports: [AuthComponent,RouterOutlet,StripeComponent,Web3ConnectComponent ,UserListComponent,RouterModule,CommonModule,ChildComponent,UnlessDirective,FilterCustomPipePipe,DemoComponent,FileUploadComponent,FormsModule,LifeCycleHooksComponent,SocketDemoComponent,RxjsLearnComponent,BalanceComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent extends BaseComponent implements OnInit {
   title = 'Angular-new';
   searchQuery! :string;
-  constructor(private cookie:CookieService,private http:HttpClient,private demoService:DemoService,private router:Router,private activatedRoute:ActivatedRoute){
+  constructor(private authService:AuthService,private cookie:CookieService,private http:HttpClient,private demoService:DemoService,private router:Router,private activatedRoute:ActivatedRoute){
     super();
     this.displayInfo();
   }
@@ -181,5 +183,11 @@ export class AppComponent extends BaseComponent implements OnInit {
   // This method manually triggers scrolling if the same link is clicked again.
   scrollToSection(fragment: string) {
     this.goToSection(fragment);
+  }
+
+
+  login(){
+    this.authService.login();  
+    
   }
 }
