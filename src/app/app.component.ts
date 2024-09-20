@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RouterModule, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterModule, RouterOutlet } from '@angular/router';
 import { UserListComponent } from './user-list/user-list.component';
 import { CookieService } from 'ngx-cookie-service';
 import { CommonModule } from '@angular/common';
@@ -78,6 +78,25 @@ export class AppComponent extends BaseComponent implements OnInit {
 
   //interceptors http req
   ngOnInit(): void {
+
+    this.router.events.subscribe((event)=>{
+      if(event instanceof NavigationStart) {
+        console.log('Navigation started:', event.url);
+      }
+
+      if(event instanceof NavigationEnd) {
+        console.log('Navigation ended:', event.url);
+
+      }
+
+      if(event instanceof NavigationCancel) {
+        console.log('Navigation canceled:', event.url);
+      }
+
+      if(event instanceof NavigationError) {
+        console.log('Navigation error:', event.error);
+      }
+    })
     this.activatedRoute.fragment.subscribe((data)=>{
       console.log("route fragment:",data);
       this.goToSection(data);
@@ -95,6 +114,9 @@ export class AppComponent extends BaseComponent implements OnInit {
 
 
     this.involkeStripe()
+
+
+    
     
   }
 
@@ -144,6 +166,7 @@ export class AppComponent extends BaseComponent implements OnInit {
       description : 'payment',
       amount : amount * 100
     })
+
   }
 
 
