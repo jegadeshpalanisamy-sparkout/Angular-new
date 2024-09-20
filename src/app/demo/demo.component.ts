@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-demo',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './demo.component.html',
   styleUrl: './demo.component.css'
 })
@@ -19,7 +20,7 @@ export class DemoComponent implements OnInit {
     category!:string;
     routeSub!: Subscription;
     searchTerm!:string;
-
+    searchProduct!:string;
 
     
 
@@ -88,6 +89,20 @@ export class DemoComponent implements OnInit {
     })
     }
 
-  
 
+    products = [
+      { name: 'Apple', category: 'Fruit', price: 1.99 },
+      { name: 'Banana', category: 'Fruit', price: 0.99 },
+      { name: 'Carrot', category: 'Vegetable', price: 2.50 },
+      { name: 'Broccoli', category: 'Vegetable', price: 3.25 },
+      { name: 'Steak', category: 'Meat', price: 12.99 },
+    ];
+  
+    filterProducts(){
+      if(!this.searchProduct){
+        return this.products;
+      } else {
+        return this.products.filter((product)=>product.name.toLowerCase().includes(this.searchProduct.toLowerCase()))
+      }
+    }
 }

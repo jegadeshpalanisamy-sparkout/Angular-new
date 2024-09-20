@@ -20,4 +20,17 @@
  <h1>Product ID: {{ productId }}</h1>
 
 
-  
+ <div class="filter-container">
+    <!-- Search input for filtering -->
+    <input type="text" placeholder="Search by name..." [(ngModel)]="searchProduct" />
+  </div> 
+
+
+ <div class="product-list">
+    <p>Display the filtered products </p>
+    <ul>
+      <li *ngFor="let product of filterProducts()">
+        {{ product.name }} ({{ product.category }}) - ${{ product.price }}
+      </li>
+    </ul>
+  </div>
