@@ -3,6 +3,9 @@
 <a routerLink="company">Company</a> <br>
 <a routerLink="organization">Organization</a>
 
-
+<h1>Data Received:</h1>
+<p>ID: {{ data?.id }}</p>
+<p>Name: {{ data?.name }}</p>
+<p>Message: {{ data?.message }}</p>
 
 <router-outlet></router-outlet> <!-- This is required to display child components -->

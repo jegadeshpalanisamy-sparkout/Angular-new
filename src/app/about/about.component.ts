@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -8,6 +8,12 @@ import { RouterModule } from '@angular/router';
   templateUrl: './about.component.html',
   styleUrl: './about.component.css'
 })
-export class AboutComponent {
+export class AboutComponent implements OnInit{
+  data: any;
 
+
+  ngOnInit(): void {
+    this.data =history.state;
+    console.log('state data:',this.data);
+  }
 }

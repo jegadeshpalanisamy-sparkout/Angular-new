@@ -231,4 +231,9 @@ export class AppComponent extends BaseComponent implements OnInit {
     }
   }
 
+
+  sendObjectInRoute(){
+    const data = { id: 123, name: 'John Doe', message: 'Hello from Sender!' };
+    this.router.navigate(['/about'], { state: data });
+  }
 }
