@@ -21,12 +21,13 @@ import { Web3ConnectComponent } from './web3-connect/web3-connect.component';
 import { BalanceComponent } from './balance/balance.component';
 import { AuthComponent } from './auth/auth.component';
 import { AuthService } from './service/auth.service';
-
+import { UseRole } from './enums/user-role.enum';
+import { RoleDisplayComponent } from './role-display/role-display.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [AuthComponent,RouterOutlet,StripeComponent,Web3ConnectComponent ,UserListComponent,RouterModule,CommonModule,ChildComponent,UnlessDirective,FilterCustomPipePipe,DemoComponent,FileUploadComponent,FormsModule,LifeCycleHooksComponent,SocketDemoComponent,RxjsLearnComponent,BalanceComponent],
+  imports: [RoleDisplayComponent,AuthComponent,RouterOutlet,StripeComponent,Web3ConnectComponent ,UserListComponent,RouterModule,CommonModule,ChildComponent,UnlessDirective,FilterCustomPipePipe,DemoComponent,FileUploadComponent,FormsModule,LifeCycleHooksComponent,SocketDemoComponent,RxjsLearnComponent,BalanceComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -190,4 +191,21 @@ export class AppComponent extends BaseComponent implements OnInit {
     this.authService.login();  
     
   }
+// Enum
+  role =UseRole.User;
+  userRoles = Object.values(UseRole); 
+
+  getRoleMessage(){
+    switch(this.role){
+      case UseRole.Admin:
+        return 'you have admin access';
+      case UseRole.User:
+        return 'you have user access';
+      case UseRole.Guest:
+        return 'you have guest access';
+      default:
+        return 'you have no access';
+    }
+  }
+
 }

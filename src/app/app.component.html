@@ -113,3 +113,19 @@ Routing App
   <h2>Login Page</h2>
   <button (click)="login()">Login</button>
   <a routerLink="authUser">login users only access this link</a>
+
+
+  <h2>Enum</h2>
+  <select [(ngModel)]="role">
+    <option *ngFor="let role of userRoles" [value]="role">{{ role }}</option>
+  </select>
+
+  <!-- Display the role message based on the switch case -->
+<p>{{ getRoleMessage() }}</p>
+<!-- Pass the role to a child component -->
+<app-role-display [role]="role"></app-role-display>
+
+<!-- Show content based on role using ngIf -->
+<div *ngIf="role === 'ADMIN'">Welcome, Admin! You have full access.</div>
+<div *ngIf="role === 'USER'">Welcome, User! You have limited access.</div>
+<div *ngIf="role === 'GUEST'">Welcome, Guest! Please log in.</div>
